@@ -20,6 +20,8 @@ use Staudenmeir\EloquentHasManyDeep\HasOneDeep;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 use Throwable;
 
+use function Safe\array_flip;
+
 class EloquentHasManyDeepHook implements ModelHookInterface
 {
     protected const RELATION_TYPES = [
@@ -48,7 +50,13 @@ class EloquentHasManyDeepHook implements ModelHookInterface
                 $type = (string) $this->getReturnTypeFromDocBlock($reflection);
             }
 
-            $file = new \SplFileObject($reflection->getFileName());
+            $fileName = $reflection->getFileName();
+
+            if (! $fileName) {
+                return;
+            }
+
+            $file = new \SplFileObject($fileName);
             $file->seek($reflection->getStartLine() - 1);
 
             $code = '';
@@ -119,7 +127,7 @@ class EloquentHasManyDeepHook implements ModelHookInterface
         }
     }
 
-    protected function getReturnTypeFromDocBlock(ReflectionMethod $reflection)
+    protected function getReturnTypeFromDocBlock(ReflectionMethod $reflection): ?string
     {
         $phpDocContext = (new ContextFactory())->createFromReflector($reflection);
         $context = new Context(
@@ -130,13 +138,14 @@ class EloquentHasManyDeepHook implements ModelHookInterface
         $phpdoc = new DocBlock($reflection, $context);
 
         if ($phpdoc->hasTag('return')) {
+            // @phpstan-ignore-next-line
             $type = $phpdoc->getTagsByName('return')[0]->getType();
         }
 
         return $type;
     }
 
-    protected function getCommentFromDocBlock(ReflectionMethod $reflection)
+    protected function getCommentFromDocBlock(ReflectionMethod $reflection): ?string
     {
         $phpDocContext = (new ContextFactory())->createFromReflector($reflection);
         $context = new Context(
@@ -164,15 +173,20 @@ class EloquentHasManyDeepHook implements ModelHookInterface
         return $usedClassNames[$className] ?? ('\\' . $className);
     }
 
+    /**
+     * @param ReflectionClass $reflection
+     * @return array<string, string>
+     */
     protected function getUsedClassNames(ReflectionClass $reflection): array
     {
         $namespaceAliases = array_flip((new ContextFactory())->createFromReflector($reflection)->getNamespaceAliases());
         $namespaceAliases[$reflection->getName()] = $reflection->getShortName();
 
+        dump($namespaceAliases);
         return $namespaceAliases;
     }
 
-    protected function getCollectionClass($className): string
+    protected function getCollectionClass(string $className): string
     {
         // Return something in the very very unlikely scenario the model doesn't
         // have a newCollection() method.
