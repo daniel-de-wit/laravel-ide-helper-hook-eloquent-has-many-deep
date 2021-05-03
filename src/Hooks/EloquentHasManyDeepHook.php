@@ -103,6 +103,8 @@ class EloquentHasManyDeepHook implements ModelHookInterface
                                 $comment,
                                 true,
                             );
+
+                            return;
                         }
 
                         if ($relationObj instanceof HasManyDeep) {
