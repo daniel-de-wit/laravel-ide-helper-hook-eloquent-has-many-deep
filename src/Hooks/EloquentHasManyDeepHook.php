@@ -178,13 +178,13 @@ class EloquentHasManyDeepHook implements ModelHookInterface
     /**
      * @param ReflectionClass $reflection
      * @return array<string, string>
+     * @throws \Safe\Exceptions\ArrayException
      */
     protected function getUsedClassNames(ReflectionClass $reflection): array
     {
         $namespaceAliases = array_flip((new ContextFactory())->createFromReflector($reflection)->getNamespaceAliases());
         $namespaceAliases[$reflection->getName()] = $reflection->getShortName();
 
-        dump($namespaceAliases);
         return $namespaceAliases;
     }
 
