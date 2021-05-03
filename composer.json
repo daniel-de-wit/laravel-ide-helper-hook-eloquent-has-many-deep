@@ -1,0 +1,65 @@
+{
+    "name": "daniel-de-wit/laravel-ide-helper-hook-eloquent-has-many-deep",
+    "type": "library",
+    "description": "Add Eloquent Has Many Deep support to Laravel IDE Helper",
+    "keywords": [
+        "laravel-ide-helper",
+        "eloquent-has-many-deep"
+    ],
+    "homepage": "https://github.com/daniel-de-wit/laravel-ide-helper-hook-eloquent-has-many-deep",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daniel de Wit",
+            "email": "daniel@danieldewit.nl",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3 || ^8.0",
+        "barryvdh/laravel-ide-helper": "^2.9.2",
+        "staudenmeir/eloquent-has-many-deep": "^1.7"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "nunomaduro/larastan": "^0.7.3",
+        "orchestra/testbench": "^6.7",
+        "phpstan/phpstan-mockery": "^0.12.13",
+        "phpstan/phpstan-phpunit": "^0.12.18",
+        "phpunit/phpunit": "^9.5",
+        "thecodingmachine/phpstan-safe-rule": "^1.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DanielDeWit\\LaravelIdeHelperHookEloquentHasManyDeep\\Providers\\LaravelIdeHelperHookEloquentHasManyDeepServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "DanielDeWit\\LaravelIdeHelperHookEloquentHasManyDeep\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DanielDeWit\\LaravelIdeHelperHookEloquentHasManyDeep\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "analyze": "vendor/phpstan/phpstan/phpstan analyse",
+        "check-style": [
+            "php-cs-fixer fix --diff --diff-format=udiff --dry-run",
+            "php-cs-fixer fix --diff --diff-format=udiff --dry-run --config=.php_cs.tests.php"
+        ],
+        "coverage": "vendor/bin/phpunit",
+        "fix-style": [
+            "php-cs-fixer fix",
+            "php-cs-fixer fix --config=.php_cs.tests.php"
+        ],
+        "test": "vendor/bin/phpunit --no-coverage"
+    }
+}
