@@ -3,6 +3,7 @@
     "type": "library",
     "description": "Add Eloquent Has Many Deep support to Laravel IDE Helper",
     "keywords": [
+        "dev",
         "laravel-ide-helper",
         "eloquent-has-many-deep"
     ],
