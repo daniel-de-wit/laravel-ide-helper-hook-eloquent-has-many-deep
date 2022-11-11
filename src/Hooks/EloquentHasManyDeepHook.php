@@ -20,8 +20,6 @@ use Staudenmeir\EloquentHasManyDeep\HasOneDeep;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 use Throwable;
 
-use function Safe\array_flip;
-
 class EloquentHasManyDeepHook implements ModelHookInterface
 {
     protected const RELATION_TYPES = [
@@ -178,7 +176,6 @@ class EloquentHasManyDeepHook implements ModelHookInterface
     /**
      * @param ReflectionClass $reflection
      * @return array<string, string>
-     * @throws \Safe\Exceptions\ArrayException
      */
     protected function getUsedClassNames(ReflectionClass $reflection): array
     {
