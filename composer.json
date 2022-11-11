@@ -22,11 +22,11 @@
         "staudenmeir/eloquent-has-many-deep": "^1.7"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.18",
-        "nunomaduro/larastan": "^0.7.3",
-        "orchestra/testbench": "^6.7",
-        "phpstan/phpstan-mockery": "^0.12.13",
-        "phpstan/phpstan-phpunit": "^0.12.18",
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "nunomaduro/larastan": "^2.2",
+        "orchestra/testbench": "^7.11",
+        "phpstan/phpstan-mockery": "^1.1",
+        "phpstan/phpstan-phpunit": "^1.2",
         "phpunit/phpunit": "^9.5"
     },
     "config": {
