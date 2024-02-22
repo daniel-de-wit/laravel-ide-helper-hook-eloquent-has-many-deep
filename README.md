@@ -1,3 +1,10 @@
+DEPRECATED:
+
+The Laravel IDE-helper hook has been added to the main repo, see:
+ - https://github.com/staudenmeir/eloquent-has-many-deep/pull/215
+ - https://github.com/staudenmeir/eloquent-has-many-deep/releases/tag/v1.19
+
+
 # Laravel IDE Helper Hook EloquentHasManyDeep
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
